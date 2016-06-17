@@ -12,5 +12,7 @@ public class HelloControllerTest {
 		HelloController controller = new HelloController();
 		ModelAndView modelAndView = controller.handleRequest(null, null);
 		assertThat(modelAndView.getViewName()).isEqualTo("WEB-INF/jsp/hello.jsp");
+		assertThat(modelAndView.getModel()).isNotNull();
+		assertThat(modelAndView.getModel().get("now")).isNotNull();
 	}
 }
