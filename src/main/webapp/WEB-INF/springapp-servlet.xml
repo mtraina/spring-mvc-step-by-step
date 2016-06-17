@@ -19,6 +19,19 @@
     	<constructor-arg ref="productService"/>
     </bean>
     
+    <bean name="/priceincrease.html" class="com.mtraina.springapp.web.PriceIncreaseFormController">
+    	<constructor-arg ref="productService"/>
+    	
+        <property name="sessionForm" value="true"/>
+        <property name="commandName" value="priceIncrease"/>
+        <property name="commandClass" value="com.mtraina.springapp.dto.PriceIncrease"/>
+        <property name="validator">
+            <bean class="com.mtraina.springapp.validator.PriceIncreaseValidator"/>
+        </property>
+        <property name="formView" value="priceincrease"/>
+        <property name="successView" value="hello.html"/>
+    </bean>
+    
     <bean id="productService" class="com.mtraina.springapp.service.ProductServiceImpl">
     	<constructor-arg ref="productDao"/>
     </bean>
