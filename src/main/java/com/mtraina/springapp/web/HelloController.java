@@ -12,7 +12,7 @@ public class HelloController implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
 		String now = (new Date()).toString();
-		return new ModelAndView("WEB-INF/jsp/hello.jsp", "now", now);
+		return new ModelAndView("hello", "now", now);
 	}
 
 }
