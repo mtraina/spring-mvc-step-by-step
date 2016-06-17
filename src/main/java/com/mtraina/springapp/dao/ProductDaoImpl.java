@@ -1,18 +1,32 @@
 package com.mtraina.springapp.dao;
 
-import java.util.Set;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
 
-import com.google.common.collect.Sets;
-import com.mtraina.springapp.builder.ProductBuilder;
+import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcDaoSupport;
+
 import com.mtraina.springapp.domain.Product;
 
-public class ProductDaoImpl implements ProductDao {
+public class ProductDaoImpl extends SimpleJdbcDaoSupport implements ProductDao {
 
-	public Set<Product> findProducts() {
-		return Sets.newHashSet(
-				ProductBuilder.instance().description("apple").price(1D).build(),
-				ProductBuilder.instance().description("pear").price(2D).build(),
-				ProductBuilder.instance().description("banana").price(0.8D).build());
+	public List<Product> findProducts() {
+		List<Product> products = getSimpleJdbcTemplate().query(
+                "select id, description, price from products", 
+                new ProductMapper());
+        return products;
 	}
+	
+	private static class ProductMapper implements ParameterizedRowMapper<Product> {
+
+        public Product mapRow(ResultSet rs, int rowNum) throws SQLException {
+            Product prod = new Product();
+            prod.setId(rs.getInt("id"));
+            prod.setDescription(rs.getString("description"));
+            prod.setPrice(new Double(rs.getDouble("price")));
+            return prod;
+        }
+    }
 
 }

@@ -1,6 +1,6 @@
 package com.mtraina.springapp.service;
 
-import java.util.Set;
+import java.util.List;
 
 import com.mtraina.springapp.dao.ProductDao;
 import com.mtraina.springapp.domain.Product;
@@ -12,7 +12,7 @@ public class ProductServiceImpl implements ProductService {
 		this.productDao = productDao;
 	}
 	
-	public Set<Product> getProducts() {
+	public List<Product> getProducts() {
 		return productDao.findProducts();
 	}
 

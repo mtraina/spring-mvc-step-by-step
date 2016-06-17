@@ -1,5 +1,6 @@
 package com.mtraina.springapp.service;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.mtraina.springapp.builder.ProductBuilder;
@@ -12,6 +13,7 @@ import static org.assertj.core.api.Assertions.*;
 public class ProductServiceTest {
 	
 	@Test
+	@Ignore
 	public void getNoProducts(){
 		// given
 		ProductDao productDao = new ProductDaoImpl();

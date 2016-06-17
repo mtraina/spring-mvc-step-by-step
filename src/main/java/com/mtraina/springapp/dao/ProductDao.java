@@ -1,9 +1,9 @@
 package com.mtraina.springapp.dao;
 
-import java.util.Set;
+import java.util.List;
 
 import com.mtraina.springapp.domain.Product;
 
 public interface ProductDao {
-	Set<Product> findProducts();
+	List<Product> findProducts();
 }
